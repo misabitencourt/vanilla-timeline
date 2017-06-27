@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Todo bit</title>
+    </head>
+    <body>
+
+
+        <h1>Sample</h1>
+
+        <div id="booking-map"></div>
+
+        <script>        
+            (function() {
+                
+                var bookingEl = document.getElementById('booking-map');
+
+                fetch('sample-data.json')
+                .then(function(res) {
+                    return res.json();
+                })
+                .then(function() {
+                    createBookingMap({
+                        el: bookingEl
+                    });
+                });
+                
+            }());
+        </script>
+
+
+    </body>
+</html>

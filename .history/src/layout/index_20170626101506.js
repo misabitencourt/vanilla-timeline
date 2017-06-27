@@ -1,0 +1,12 @@
+import {getLatest} from '../filters'
+
+export function createTable(params) {
+
+    let dateInterval = getDateInterval(params.data)
+
+    let tbl = document.createElement('table')
+    table.
+
+}
+
+

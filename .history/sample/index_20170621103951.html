@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Todo bit</title>
+    </head>
+    <body>
+
+
+        <h1>Sample</h1>
+
+        <div id="booking-map"></div>
+
+        <script>        
+            (function() {
+                var bookingEl = document.getElementById('booking-map')
+                createBookingMap({
+                    el: bookingEl,
+
+                    subjectCategs: [
+                        {
+                            id: 'UDG',
+                            name: 'Underground'
+                        },
+                        {
+                            id: '1DG',
+                            name: 'First floor'
+                        },
+                        {
+                            id: '2DG',
+                            name: '2 floor'
+                        },
+                        {
+                            id: '3DG',
+                            name: '3 floor'
+                        },
+                        {
+                            id: '4DG',
+                            name: '4 floor'
+                        }                        
+                    ],
+
+                    subjects: [
+                        {
+                            id: 'ROOM-EMG',
+                            name: 'Emergency room',
+                            description: 'An emergency room, only for lost people',
+                            category: '1DG'
+                        },
+                        {
+                            id: 'ROOM-01',
+                            name: 'Room #1',
+                            description: 'A common room',
+                            category: '1DG'
+                        }
+                    ]
+                })
+            }());
+        </script>
+
+
+    </body>
+</html>

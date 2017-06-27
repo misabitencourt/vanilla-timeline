@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Todo bit</title>
+    </head>
+    <body>
+
+        {% include 'site/navbar.html' %}
+
+        {% include 'site/presentation.html' %}
+
+        <div class="py-100 container">
+            {% include 'site/services.html' %}
+        </div>
+
+        <div class="bg-grey">
+            <div class="py-100 container">
+                {% include 'site/clients.html' %}
+            </div>
+        </div>
+
+        <div class="do-parallax parallax-bkg">
+            <div class="py-100"></div>
+            <div class="py-100"></div>
+            <div class="py-100"></div>
+        </div>
+
+        <div class="py-100 container">
+            {% include 'site/projects.html' %}
+        </div>
+
+        <div id="location" class="bg-inverse text-white location-container">
+            <div class="py-100">
+                {% include 'site/location.html' %}
+            </div>
+        </div>
+
+        <div id="contact" class="bg-inverse text-white contact-container">
+            {% include 'site/contact.html' %}
+        </div>
+
+
+        <script src="app/assets/js/site/vendor/big-picture.js"></script>
+
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+        <!-- Parallax -->
+        <script src="app/assets/js/site/vendor/parallax.js"></script>
+
+        <!-- Slimscroll -->
+        <script src="app/assets/js/site/vendor/jq-slimscroll.js"></script>
+
+        <!-- Bs4 -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+        <!-- Google Map Script -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHFiNG30hJORE8s8ZBlXSw96K05NAXBq0"></script>
+
+        <!-- Site js -->
+        <script src="app/assets/js/site/custom.js?nocache=2017-01-24-17-17"></script>
+    </body>
+</html>
