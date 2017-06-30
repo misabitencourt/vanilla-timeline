@@ -69,12 +69,14 @@ function createMonthsTable(params) {
     tbl2.innerHTML = `<tbody></tbody>`
     let tbody = tbl2.getElementsByTagName('tbody')[0]
 
-    tbody.innerHTML = params.data.subjects.map((s) => `
+    tbody.innerHTML = params.data.subjects.map((s, row) => `
         <tr>
             ${
-                getArrDateInterval(dateInterval).map((d) => `
+                getArrDateInterval(dateInterval).map((d, column) => `
                     <td data-subject-item="${s.id}" 
-                        data-date-item="${d.getTime()}">
+                        data-date-item="${d.getTime()}"
+                        data-column="${column}"
+                        data-row="${row}">
                         <div style="width: 47px; height: 18px"></div>
                     </td>
                 `).join('')
@@ -92,6 +94,7 @@ function createMonthsTable(params) {
     headerDiv.appendChild(tbl)
 
     let bookingDiv = document.createElement('div')
+    params.bookingDiv = bookingDiv
     bookingDiv.style.height = `${params.sizes.divX - 60}px`
     bookingDiv.style.overflowX = 'auto'
     bookingDiv.appendChild(tbl2)
@@ -154,6 +157,7 @@ export function createTable(params) {
     let clearFix = document.createElement('br')
     clearFix.style.clear = 'both'
 
+    wrp.style.overflowX = 'hidden'    
     wrp.appendChild(subjectsTbl)
     wrp.appendChild(monthsTbl)
     wrp.appendChild(clearFix)

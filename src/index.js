@@ -1,6 +1,7 @@
 import validate from './validation'
 import {createTable} from './layout'
 import defaults from './defaults'
+import booking from './booking'
 
 window.$timelineTableConfig = window.$timelineTableConfig || defaults
 
@@ -13,6 +14,7 @@ window.createBookingMap = function(params) {
     }
 
     createTable(params)
+    booking(params)
 
     window.addEventListener('resize', () => {
       window.resizeTimeout && window.clearTimeout(window.resizeTimeout);

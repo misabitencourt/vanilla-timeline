@@ -6,10 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Todo bit</title>
 
-        <style>
+        <style>            
             .timeline-table,
             .timeline-table-subjects {
                 background: #AAA;
+                border-spacing: 1px;                
             }
 
             .timeline-table-subjects {
@@ -18,18 +19,19 @@
 
             .timeline-table-subjects th,
             .timeline-table tbody td {
-                padding: 13px 8px;,
-                text-overflow: ellipsis;
+                padding: 0;
                 overflow-x: hidden;
                 white-space: nowrap;
+                overflow: hidden;
+                min-width: 63px;
+                height: 60px;
             }
 
             .timeline-table-subjects th, 
             .timeline-table-subjects td,
             .timeline-table th, 
             .timeline-table td {
-                background: #FFF; 
-                border: 1px solid #AAA;
+                background: #FFF;
             }
 
             .timeline-table-date-year {
@@ -56,6 +58,14 @@
                 width: 55px;
             }
 
+            .single-booking {
+                position: absolute;
+                background: #DDD;
+                padding: 8px 0;
+                overflow-x: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
         </style>
 
     </head>
