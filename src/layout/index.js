@@ -67,6 +67,7 @@ function createMonthsTable(params) {
     let tbl2 = document.createElement('table')
     tbl2.className = params.tableClass || 'timeline-table'
     tbl2.innerHTML = `<tbody></tbody>`
+    params.contentTable = tbl2
     let tbody = tbl2.getElementsByTagName('tbody')[0]
 
     tbody.innerHTML = params.data.subjects.map((s, row) => `
@@ -77,7 +78,7 @@ function createMonthsTable(params) {
                         data-date-item="${d.getTime()}"
                         data-column="${column}"
                         data-row="${row}">
-                        <div style="width: 47px; height: 18px"></div>
+                        <div style="width: 63px; height: 18px"></div>
                     </td>
                 `).join('')
             }
