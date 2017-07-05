@@ -24,8 +24,12 @@ Vanilla es6 table timeline component
 
 ## ES6 Modules
 
+```javascript
 import timeline from 'vanilla-timeline'
+```
 
 ## Html import
 
+```html
 <script src="./path/to/libs/vanilla-time.min.js"></script>
+```
