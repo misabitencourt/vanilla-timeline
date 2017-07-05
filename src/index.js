@@ -26,3 +26,5 @@ window.createBookingMap = function(params) {
         createBookingMap(params)
     }
 }
+
+export default window.createBookingMap
