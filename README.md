@@ -19,3 +19,13 @@ Vanilla es6 table timeline component
 
     subjectItem.addEventListener('click', () => alert('Clicked!!'))
 ```
+
+# Installing
+
+## ES6 Modules
+
+import timeline from 'vanilla-timeline'
+
+## Html import
+
+<script src="./path/to/libs/vanilla-time.min.js"></script>
