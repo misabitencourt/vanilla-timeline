@@ -1,0 +1,59 @@
+.timeline-table,
+.timeline-table-subjects {
+    background: #AAA;
+    border-spacing: 1px;                
+}
+
+.timeline-table-subjects {
+    width: 100%;
+}
+
+.timeline-table-subjects th,
+.timeline-table tbody td {
+    padding: 0;
+    overflow-x: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 63px;
+    height: 60px;
+}
+
+.timeline-table-subjects th, 
+.timeline-table-subjects td,
+.timeline-table th, 
+.timeline-table td {
+    background: #FFF;
+}
+
+.timeline-table-date-year {
+    font-size: 10px;
+    display: block;
+    text-align: center;
+    color: #AAA;
+}
+
+.timeline-table-date-month {
+    font-size: 13px;
+    display: block;
+    text-align: center;
+    font-weight: 100;
+    color: #444; 
+}
+
+.timeline-table-date-day {
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    padding: 3px;
+    width: 55px;
+}
+
+.single-booking {
+    position: absolute;
+    background: #DDD;
+    padding: 8px 0;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
