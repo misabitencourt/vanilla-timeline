@@ -1,5 +1,19 @@
 # vanilla-timeline
-Vanilla es6 timeline component
+Vanilla es6 table timeline component
 
+# Code sample
+javascript`   
+    let targetDiv = document.getElementById('target-element')
+    createBookingMap({
+        el: targetDiv,
+        data: timelineData // See in ./dist/sample/sample-data.json
+    })
+`
 
-# It still under construction, sorry
+# Adding dom events
+javascript`
+    let subjectItem = 
+        targetDiv.querySelector('[data-subject-item="ROOM-01"]');
+
+    subjectItem.addEventListener('click', () => alert('Clicked!!'))
+`
