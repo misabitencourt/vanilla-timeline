@@ -1,32 +1,26 @@
 {
-  "name": "ate-exame-online-med",
+  "name": "vanilla-timeline",
   "version": "1.0.0",
-  "description": "Atendimento online - medicos",
+  "description": "Responsive timeline vanilla javascript component",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+  "scripts": { 
     "start": "webpack --config mywebpack.config.js --watch",
     "transpile": "babel dist/bundle.js --out-file dist/bundle.js",
     "minify": "uglifyjs ./dist/bundle.js --compress --output ./dist/bundle.js",
-    "minify-css": "node uglify-css.js",
-    "build": "webpack --config mywebpack.config.js & npm run transpile & npm run minify",
-    "cordova-deploy": "cp -R ./dist ./cordova-app/www"
+    "build": "webpack --config mywebpack.config.js & npm run transpile & npm run minify"
   },
   "repository": {
     "type": "git",
-    "url": "http://192.168.2.9/Bonobo.Git.Server/ate-exame-online-med.git"
+    "url": "https://github.com/misabitencourt/vanilla-timeline.git"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.22.2",
-    "babel-preset-es2015": "^6.22.0",
-    "bootstrap": "^4.0.0-alpha.5",
-    "moment": "^2.17.1",
+    "babel-preset-es2015": "^6.22.0",        
     "uglify-js": "^2.7.5",
     "uglifycss": "0.0.25",
-    "webpack": "2.1.0-beta.27",
-    "whatwg-fetch": "^2.0.2"
+    "webpack": "2.1.0-beta.27"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.5",
