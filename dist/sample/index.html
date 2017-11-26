@@ -25,7 +25,14 @@
                 .then(function(bookingData) {
                     createBookingMap({
                         el: bookingEl,
-                        data: bookingData
+                        data: bookingData,
+                        onResizeBooking: function(booking, days) {
+                            console.log(booking)
+                            console.log(days)
+                        },
+                        onBookingClick: function(booking) {
+                            console.log(booking)
+                        }
                     });
                 });
                 

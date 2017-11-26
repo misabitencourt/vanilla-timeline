@@ -1,4 +1,4 @@
-
+const oneDay = 864e5
 
 export function getEarlyDate(data) {
     let selected = null;
@@ -10,6 +10,8 @@ export function getEarlyDate(data) {
           selected = date
         }
     })
+
+    selected.setTime(selected.getTime() - oneDay)
 
     return selected
 } 
@@ -24,6 +26,8 @@ export function getLatestDate(data) {
           selected = date
         }
     })
+
+    selected.setTime(selected.getTime() + (oneDay*2))
 
     return selected
 } 

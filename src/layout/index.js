@@ -16,14 +16,13 @@ const oneDay = 864e5
 
 function getArrDateInterval(interval) {
     let intervalArr = [interval.start]
-    
     let cursor = new Date(interval.start+'')
-    do {
+    let end = new Date(interval.end+'')
+
+    while (cursor.getTime() <= end.getTime()) {
         cursor.setTime(cursor.getTime() + oneDay)
         intervalArr.push(new Date(cursor+''))
-    } while (cursor.getTime() < interval.end.getTime());
-    
-    intervalArr.push(interval.end)
+    }
 
     return intervalArr
 }
@@ -69,11 +68,15 @@ function createMonthsTable(params) {
     tbl2.innerHTML = `<tbody></tbody>`
     params.contentTable = tbl2
     let tbody = tbl2.getElementsByTagName('tbody')[0]
+    let interval = getArrDateInterval(dateInterval)
 
     tbody.innerHTML = params.data.subjects.map((s, row) => `
         <tr>
+            <td>
+                <div style="width: 63px; height: 18px"></div>
+            </td>
             ${
-                getArrDateInterval(dateInterval).map((d, column) => `
+                interval.map((d, column) => ((column+1) == interval.length) ? '' : `
                     <td data-subject-item="${s.id}" 
                         data-date-item="${d.getTime()}"
                         data-column="${column}"

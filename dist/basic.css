@@ -57,3 +57,16 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.timeline-drag-selection.timeline-drag-selection {
+    background: rgba(255,215,0, 0.78);
+    animation-name: blinker;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+    animation-duration: 0.4s;
+}
+
+@keyframes blinker {
+  from { background: 1.0; }
+  to { opacity: 0.5; }
+}
