@@ -27,11 +27,13 @@
                         el: bookingEl,
                         data: bookingData,
                         onResizeBooking: function(booking, days) {
-                            console.log(booking)
-                            console.log(days)
+                            console.log(booking, days)
                         },
                         onBookingClick: function(booking) {
                             console.log(booking)
+                        },
+                        onBookingMove: function(booking, date, subject) {
+                            console.log(booking, date, subject)
                         }
                     });
                 });

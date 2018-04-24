@@ -111,6 +111,25 @@ function createMonthsTable(params) {
     div.appendChild(headerDiv)
     div.appendChild(bookingDiv)
 
+    Array.from(tbody.querySelectorAll('td')).forEach(td => td.addEventListener('mouseover', e => {
+        if (! window.mouseDragging) {
+            return;
+        }
+        Array.from(document.querySelectorAll('.timeline-drag-selection')).forEach(e => 
+            e.classList.remove('timeline-drag-selection'));
+        const tr = td.parentElement
+        const days = window.mouseDragging.booking.daysDiff        
+        const currentCol = (td.dataset.column*1) || 0;
+        td.classList.add('timeline-drag-selection')
+        for (let i=currentCol; i<(currentCol+days+1); i++) {
+            const currentTd = tr.querySelector(`[data-column="${i}"]`)
+            if (! currentTd) {                
+                continue;
+            }
+            currentTd.classList.add('timeline-drag-selection')
+        }
+    }))
+
     return div
 }
 

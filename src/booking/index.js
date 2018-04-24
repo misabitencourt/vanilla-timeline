@@ -37,6 +37,9 @@ function createResizeEls(td, params, booking) {
     leftEl.style.width = rightEl.style.width = `${resizeElWidth}px`;
     leftEl.style.cursor = rightEl.style.cursor = 'ew-resize';
     centerEl.style.overflow = 'hidden'
+    rightEl.classList.add('resizable')
+    leftEl.classList.add('resizable')
+    centerEl.classList.add('draggable')
 
     let isResizing = null
     let clickTime = null
@@ -45,6 +48,21 @@ function createResizeEls(td, params, booking) {
     let draggedPos = 0
 
     const mousedown = (e, direction) => {
+        if (e.target.classList.contains('draggable')) {
+            let refElement = document.createElement('div')
+            refElement.style.position = 'fixed'
+            refElement.style.left = `${e.clientX}px`
+            refElement.style.top = `${e.clientY}px`
+            refElement.style.width = 'auto'
+            refElement.textContent = centerEl.textContent
+            refElement.classList.add('draggable-ref')
+            document.body.appendChild(refElement)
+
+            window.mouseDragging = {params, booking, td}
+
+            return;
+        }
+
         clickTime = new Date().getTime()
         isResizing = direction
         clickedPos = {x: e.x, y: e.y}
@@ -64,6 +82,11 @@ function createResizeEls(td, params, booking) {
     }
 
     const mousemove = (e, direction) => {
+        Array.from(document.querySelectorAll('.draggable-ref')).forEach(dragEl => {
+            dragEl.style.left = `${e.clientX}px`
+            dragEl.style.top = `${e.clientY}px`
+        })
+
         if (! (clickedPos && clickedRow)) return;
         draggedPos = {x: e.x - clickedPos.x, y: e.y - clickedPos.y}
 
@@ -127,7 +150,7 @@ function createResizeEls(td, params, booking) {
 
     centerEl.addEventListener('mouseup', (e) => mouseup(e))
     parent.addEventListener('mouseup', (e) => mouseup(e, 'l'))
-    parent.addEventListener('mouseup', (e) => mouseup(e, 'r'))
+    parent.addEventListener('mouseup', (e) => mouseup(e, 'r'))                
 }
 
 export default function (params) {
@@ -148,6 +171,7 @@ export default function (params) {
             tdStart = params.el.querySelector(startSelector),
             tdEnd = params.el.querySelector(endSelector);
         
+        booking.daysDiff = dayDiff
         tdStart.colSpan = dayDiff+1
         tdStart.style.backgroundColor = '#DDD'
         tdStart.dataset.content = booking.name
@@ -159,5 +183,26 @@ export default function (params) {
             let td = params.bookingDiv.querySelector(selector)
             td && killEl(td)
         }              
+    })
+
+    document.addEventListener('mouseup', (e) => {
+        Array.from(document.querySelectorAll('.draggable-ref')).forEach(e => 
+            e.parentElement.removeChild(e));
+
+        Array.from(document.querySelectorAll('.timeline-drag-selection')).forEach(e => 
+            e.classList.remove('timeline-drag-selection'));
+
+        if (window.mouseDragging) {
+            const td = window.mouseDragging.td
+            const booking = mouseDragging.booking
+            
+            const date = new Date()
+            date.setTime(td.dataset.dateItem)
+
+            const subject = td.dataset.subjectItem
+
+            params.onBookingMove && params.onBookingMove(booking, date, subject);
+            delete window.mouseDragging;
+        }        
     })
 }

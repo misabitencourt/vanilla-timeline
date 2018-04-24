@@ -1,3 +1,11 @@
+.timeline-table * {
+    -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
 .timeline-table,
 .timeline-table-subjects {
     background: #AAA;
@@ -64,6 +72,27 @@
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(.5, 0, 1, 1);
     animation-duration: 0.4s;
+}
+
+.resizable:hover {
+    background: rgba(0, 0, 0, 0.6);
+    animation: blinker 0.3s steps(5, start) infinite;
+    -webkit-animation: blinker 0.3s steps(5, start) infinite;
+}
+
+.draggable {
+    cursor: move;
+}
+
+.draggable-ref {
+    background: #FFF;
+    z-index: 99999;
+    color: #333;
+    font-weight: bold;
+    height: 21px;
+    padding: 5px;
+    border: 2px solid #333;
+    overflow: hidden;
 }
 
 @keyframes blinker {
