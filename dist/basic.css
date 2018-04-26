@@ -95,6 +95,13 @@
     overflow: hidden;
 }
 
+.timeline-category-filter {
+    width: 100%;
+    height: 58px;
+    margin-bottom: 2px;    
+    background: #FFF;
+}
+
 @keyframes blinker {
   from { background: 1.0; }
   to { opacity: 0.5; }

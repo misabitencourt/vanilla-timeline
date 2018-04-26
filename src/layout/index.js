@@ -1,8 +1,7 @@
+import thDateIntervalTemplate from './th-date-interval-template'
+import createSubjectsTable from './create-subjects-table'
+import getArrDateInterval from './arr-date-interval'
 import {getDateInterval} from '../filters'
-
-function getMonthName(nr) {
-    return window.$timelineTableConfig.monthNames[1*nr]
-}
 
 function firstThWidth() {
     let wWidth = window.innerWidth
@@ -12,39 +11,8 @@ function firstThWidth() {
     return wWidth
 }
 
-const oneDay = 864e5
-
-function getArrDateInterval(interval) {
-    let intervalArr = [interval.start]
-    let cursor = new Date(interval.start+'')
-    let end = new Date(interval.end+'')
-
-    while (cursor.getTime() <= end.getTime()) {
-        cursor.setTime(cursor.getTime() + oneDay)
-        intervalArr.push(new Date(cursor+''))
-    }
-
-    return intervalArr
-}
-
 function getThDateInterval(interval) {
-    return getArrDateInterval(interval).map((date) => {
-        let year = (date.getFullYear() + '').substr(2, 4)
-        let month = getMonthName(date.getMonth())
-        return `
-            <th>
-                <small class="timeline-table-date-year">
-                    ${year}
-                </small>
-                <span class="timeline-table-date-day">
-                    ${date.getDate()}
-                </span>
-                <span class="timeline-table-date-month">
-                    ${month}
-                </span>
-            </th>
-        `
-    }).join('')
+    return getArrDateInterval(interval).map(thDateIntervalTemplate).join('')
 }
 
 function createMonthsTable(params) {
@@ -72,7 +40,7 @@ function createMonthsTable(params) {
 
     tbody.innerHTML = params.data.subjects.map((s, row) => `
         <tr>
-            <td>
+            <td class="subject-category-${s.category}">
                 <div style="width: 63px; height: 18px"></div>
             </td>
             ${
@@ -80,7 +48,8 @@ function createMonthsTable(params) {
                     <td data-subject-item="${s.id}" 
                         data-date-item="${d.getTime()}"
                         data-column="${column}"
-                        data-row="${row}">
+                        data-row="${row}"
+                        class="subject-category-${s.category}">
                         <div style="width: 63px; height: 18px"></div>
                     </td>
                 `).join('')
@@ -133,33 +102,6 @@ function createMonthsTable(params) {
     return div
 }
 
-function createSubjectsTable(params) {
-
-    let div = document.createElement('div')
-    div.style.width = window.innerWidth > 800 ? '20%' : '38%'
-
-    let tbl = document.createElement('table')
-    tbl.border = 0
-    tbl.dataset.subjectsTable = '1'
-    tbl.className = params.tableClass || 'timeline-table-subjects'
-    
-    let tbody = document.createElement('tbody')
-    tbl.appendChild(tbody)
-    tbody.innerHTML = params.data.subjects.map((s) => `
-        <tr>
-            <th data-subject="${s.id}" title="${s.description}">
-                ${s.name}
-            </th>
-        </tr>
-    `).join('')
-
-    div.style.height = `${params.sizes.divX - 60}px`
-    div.style.overflowY = 'hidden'
-    div.appendChild(tbl)
-
-    return div
-}
-
 export function createTable(params) {
     let generalMarginY = window.innerHeight > 520 ? 
                             200 : (window.innerHeight * 0.13);
@@ -187,7 +129,6 @@ export function createTable(params) {
 
     // 1x1 space
     subjectsTbl.style.marginTop = `60px` // FIXME auto
-    subjectsTbl.innerHTML = subjectsTbl.innerHTML
 }
 
 
