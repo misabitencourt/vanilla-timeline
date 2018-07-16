@@ -1,8 +1,8 @@
 {
   "name": "vanilla-timeline",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Responsive timeline vanilla javascript component",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "webpack --config mywebpack.config.js --watch",
     "transpile": "babel dist/bundle.js --out-file dist/bundle.js",
