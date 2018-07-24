@@ -70,13 +70,35 @@ function createResizeEls(td, params, booking) {
     }
 
     const mouseup = (e) => {
-        let now = new Date().getTime();
+        let now = new Date().getTime()
         let diff = now - (clickTime || 1e7);
 
         if ((diff < 1e3) && params.onBookingClick) {
-            params.onBookingClick(booking)
-        }
 
+            params.onBookingClick(booking)
+
+        } else if (params.onCreateRage) {
+
+            let target = e.target
+            let selection;
+            if (! target.dataset.dateItem) {
+                target = target.parentElement
+            }
+
+            selection = Array.from(target.parentElement.querySelectorAll('.timeline-drag-selection'))
+            const elStart = selection.slice().shift()
+            const elEnd = selection.slice().pop()
+
+            if (elStart && elEnd) {
+                let start = new Date()
+                let end = new Date()
+                start.setTime(elStart.dataset.dateItem)
+                end.setTime(elEnd.dataset.dateItem)
+                
+                params.onCreateRage(start, end)
+            }
+        }
+        
         clickedPos = clickTime = null;
         removeSelection(parent)
     }
