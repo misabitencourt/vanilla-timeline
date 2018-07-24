@@ -2,6 +2,7 @@ import thDateIntervalTemplate from './th-date-interval-template'
 import createSubjectsTable from './create-subjects-table'
 import getArrDateInterval from './arr-date-interval'
 import {getDateInterval} from '../filters'
+import emptyDrag from './empty-drag'
 
 function firstThWidth() {
     let wWidth = window.innerWidth
@@ -49,6 +50,7 @@ function createMonthsTable(params) {
                         data-date-item="${d.getTime()}"
                         data-column="${column}"
                         data-row="${row}"
+                        data-type="empty"
                         class="subject-category-${s.category}">
                         <div style="width: 63px; height: 18px"></div>
                     </td>
@@ -56,6 +58,8 @@ function createMonthsTable(params) {
             }
         </tr>
     `).join('')
+
+    emptyDrag(Array.from(tbody.querySelectorAll('td[data-type="empty"]')))
 
     let div = document.createElement('div')
     div.style.width = window.innerWidth > 800 ? '78%' : '50%'
