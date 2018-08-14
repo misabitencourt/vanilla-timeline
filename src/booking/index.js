@@ -228,7 +228,7 @@ export default function (params) {
             const booking = mouseDragging.booking
             
             const date = new Date()
-            date.setTime(td.dataset.dateItem)
+            date.setTime(selection.slice().shift().dataset.dateItem)
 
             const subject = selection.slice().pop().dataset.subjectItem
 
