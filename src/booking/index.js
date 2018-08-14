@@ -4,6 +4,7 @@ const cellHeight = 60
 const bookingPadd = 10
 const bookingEls = []
 const bookingResizeEls = []
+let disableCreateRange = false
 
 function removeSelection(table) {
     let oldSelection = table.querySelectorAll('.timeline-drag-selection')
@@ -72,6 +73,11 @@ function createResizeEls(td, params, booking) {
     const mouseup = (e) => {
         let now = new Date().getTime()
         let diff = now - (clickTime || 1e7);
+        if (disableCreateRange) {
+            clickedPos = clickTime = null;
+            removeSelection(parent)
+            return setTimeout(() => disableCreateRange = false, 300);
+        }
 
         if ((diff < 1e3) && params.onBookingClick) {
 
@@ -95,7 +101,7 @@ function createResizeEls(td, params, booking) {
                 start.setTime(elStart.dataset.dateItem)
                 end.setTime(elEnd.dataset.dateItem)
                 
-                params.onCreateRage(start, end)
+                params.onCreateRage(start, end, elStart.dataset.subjectItem)
             }
         }
         
@@ -157,6 +163,7 @@ function createResizeEls(td, params, booking) {
                 }
 
                 if (params.onResizeBooking) {
+                    disableCreateRange = true
                     params.onResizeBooking(booking, direction === 'r' ? itemsRange : (itemsRange*-1))
                 }
             }, 10)
@@ -211,7 +218,9 @@ export default function (params) {
         Array.from(document.querySelectorAll('.draggable-ref')).forEach(e => 
             e.parentElement.removeChild(e));
 
-        Array.from(document.querySelectorAll('.timeline-drag-selection')).forEach(e => 
+        const selection = Array.from(document.querySelectorAll('.timeline-drag-selection'));
+
+        selection.forEach(e => 
             e.classList.remove('timeline-drag-selection'));
 
         if (window.mouseDragging) {
@@ -221,7 +230,7 @@ export default function (params) {
             const date = new Date()
             date.setTime(td.dataset.dateItem)
 
-            const subject = td.dataset.subjectItem
+            const subject = selection.slice().pop().dataset.subjectItem
 
             params.onBookingMove && params.onBookingMove(booking, date, subject);
             delete window.mouseDragging;
