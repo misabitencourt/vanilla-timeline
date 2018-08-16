@@ -17,6 +17,8 @@ function removeSelection(table) {
 function createResizeEls(td, params, booking) {
     let leftEl = document.createElement('div'),
         centerEl = document.createElement('div'),
+        titleSpan = document.createElement('span'),
+        subtitleSpan = document.createElement('span'),
         rightEl = document.createElement('div'),
         parent = td.parentElement.parentElement,
         currentCellWidth = cellWidth * (td.colSpan || 1),
@@ -26,7 +28,15 @@ function createResizeEls(td, params, booking) {
     td.appendChild(leftEl)
     td.appendChild(centerEl)
     td.appendChild(rightEl)
-    centerEl.textContent = td.dataset.content
+    if (booking.customClass) {
+        td.classList.add(booking.customClass)
+    }
+    titleSpan.textContent = td.dataset.content
+    subtitleSpan.textContent = booking.subtitle || ''
+    centerEl.appendChild(titleSpan)
+    titleSpan.style.float = 'left'
+    subtitleSpan.style.float = 'right'
+    centerEl.appendChild(subtitleSpan)
     
     centerEl.style.marginTop = `${cellHeight/4}px`
     centerEl.style.height = `${cellHeight * 0.6}px`

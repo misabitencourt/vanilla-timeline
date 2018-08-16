@@ -13,7 +13,7 @@ export default function createSubjectsTable(params) {
     tbody.innerHTML = params.data.subjects.map((s) => `
         <tr>
             <th data-subject="${s.id}" title="${s.description}"
-                class="subject-category-${s.category}">
+                class="subject-category-${s.category} ${s.customClass || ''}">
                 ${s.name}
             </th>
         </tr>

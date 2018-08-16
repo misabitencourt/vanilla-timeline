@@ -38,7 +38,8 @@
             "id": "ROOM-02",
             "name": "Room #2",
             "description": "A common room",
-            "category": "1dg"
+            "category": "1dg",
+            "customClass": "common-items"
         },
         {
             "id": "ROOM-03",
@@ -130,6 +131,15 @@
             "end": "2017-01-08"
         },
         {
+            "id": 91282,
+            "subject": "ROOM-EMG",
+            "name": "Test",
+            "status": "other",
+            "start": "2017-04-05",
+            "end": "2017-04-09",
+            "customClass": "udg-item"
+        },
+        {
             "id": 22,
             "subject": "ROOM-09",
             "name": "Estadia para Maria de Souza",            
@@ -158,7 +168,8 @@
             "status": "reserve",
             "name": "Reserva para Cucah Bheludo",
             "start": "2017-01-02",
-            "end": "2017-02-14"
+            "end": "2017-02-14",
+            "subtitle": "Some subtitle"
         },
         {
             "id": 26,
