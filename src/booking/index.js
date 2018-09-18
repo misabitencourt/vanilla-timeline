@@ -24,6 +24,9 @@ function createResizeEls(td, params, booking) {
         currentCellWidth = cellWidth * (td.colSpan || 1),
         resizeElWidth = cellWidth/4;
 
+    titleSpan.classList.add('title');
+    subtitleSpan.classList.add('subtitle');
+
     td.innerHTML = ''
     td.appendChild(leftEl)
     td.appendChild(centerEl)
@@ -31,7 +34,7 @@ function createResizeEls(td, params, booking) {
     if (booking.customClass) {
         td.classList.add(booking.customClass)
     }
-    titleSpan.textContent = td.dataset.content
+    titleSpan.textContent = td.dataset.content    
     subtitleSpan.textContent = booking.subtitle || ''
     centerEl.appendChild(titleSpan)
     titleSpan.style.float = 'left'

@@ -33,6 +33,14 @@
     background: #FFF;
 }
 
+.timeline-table tbody td .title {
+    cursor: pointer;
+}
+
+.timeline-table tbody td .subtitle {
+    cursor: default;
+}
+
 .timeline-table-date-year {
     font-size: 10px;
     display: block;
