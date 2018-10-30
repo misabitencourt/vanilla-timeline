@@ -1,7 +1,7 @@
 import thDateIntervalTemplate from './th-date-interval-template'
 import createSubjectsTable from './create-subjects-table'
 import getArrDateInterval from './arr-date-interval'
-import {getDateInterval} from '../filters'
+import { getDateInterval } from '../filters'
 import emptyDrag from './empty-drag'
 
 function firstThWidth() {
@@ -11,17 +11,28 @@ function firstThWidth() {
 
     return wWidth
 }
+function getDefaultDateInterval() {
+    const start = new Date();
+    start.setUTCHours(0,0,0,0)
+    const end = new Date();
+    end.setUTCHours(0,0,0,0)
+    end.setTime(end.getTime() + 86400000*12) 
+    start.setTime(start.getTime())
+    return {
+        start,
+        end
+    };
+}
 
 function getThDateInterval(interval) {
     return getArrDateInterval(interval).map(thDateIntervalTemplate).join('')
 }
 
 function createMonthsTable(params) {
-    let dateInterval = getDateInterval(params.data)
-
+    let dateInterval = params.data.booking.length ? getDateInterval(params.data) : getDefaultDateInterval();
     let tbl = document.createElement('table')
     tbl.border = 0
-    tbl.className = params.tableClass || 'timeline-table'
+    tbl.className = params.tableClass || 'timeline-table-header'
 
     tbl.innerHTML = `<thead></thead>`
     let thead = tbl.getElementsByTagName('thead')[0]
@@ -45,7 +56,7 @@ function createMonthsTable(params) {
                 <div style="width: 63px; height: 18px"></div>
             </td>
             ${
-                interval.map((d, column) => ((column+1) == interval.length) ? '' : `
+        interval.map((d, column) => ((column + 1) == interval.length) ? '' : `
                     <td data-subject-item="${s.id}" 
                         data-date-item="${d.getTime()}"
                         data-column="${column}"
@@ -55,7 +66,7 @@ function createMonthsTable(params) {
                         <div style="width: 63px; height: 18px"></div>
                     </td>
                 `).join('')
-            }
+        }
         </tr>
     `).join('')
 
@@ -63,11 +74,13 @@ function createMonthsTable(params) {
 
     let div = document.createElement('div')
     div.style.width = window.innerWidth > 800 ? '78%' : '50%'
+    div.style.overflow = 'hidden'
 
     let headerDiv = document.createElement('div')
-    headerDiv.style.height = '60px'
-    headerDiv.style.width = '100%'
+    headerDiv.style.height = '100%'
+    headerDiv.style.width = '100vw'
     headerDiv.style.overflow = 'hidden'
+    headerDiv.style.marginBottom = '3px'
     headerDiv.appendChild(tbl)
 
     let bookingDiv = document.createElement('div')
@@ -107,8 +120,8 @@ function createMonthsTable(params) {
 }
 
 export function createTable(params) {
-    let generalMarginY = window.innerHeight > 520 ? 
-                            200 : (window.innerHeight * 0.13);
+    let generalMarginY = window.innerHeight > 520 ?
+        200 : (window.innerHeight * 0.13);
 
     let divX = window.innerHeight - generalMarginY
     let wrp = params.el
@@ -126,7 +139,7 @@ export function createTable(params) {
     let clearFix = document.createElement('br')
     clearFix.style.clear = 'both'
 
-    wrp.style.overflowX = 'hidden'    
+    wrp.style.overflowX = 'hidden'
     wrp.appendChild(subjectsTbl)
     wrp.appendChild(monthsTbl)
     wrp.appendChild(clearFix)

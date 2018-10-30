@@ -18,10 +18,14 @@ export default function createSubjectsTable(params) {
             </th>
         </tr>
     `).join('')
-
-    div.style.height = `${params.sizes.divX - 60}px`
-    div.style.overflowY = 'hidden'
-    div.appendChild(tbl)
+    let quartosHeader = document.createElement('div');
+    quartosHeader.id = "quartosHeader" ;
+    quartosHeader.innerText = "Quartos"
+    div.style.height = `${params.sizes.divX - 60}px`;
+    div.style.overflowY = 'hidden';
+    div.appendChild(quartosHeader);
+    div.appendChild(tbl);
+    
 
     return div
 }
