@@ -97,7 +97,7 @@ function createResizeEls(td, params, booking) {
             params.onBookingClick(booking)
 
         } else if (params.onCreateRage) {
-
+            console.log('Criando Range')
             let target = e.target
             let selection;
             if (! target.dataset.dateItem) {
@@ -202,7 +202,37 @@ export default function (params) {
             el.parentElement.removeChild(el)
         }
     }
+    console.log(params.data.booking.length)
+    if(params.data.booking.length == 0 ){
         
+        const parentMouseUP = (e) => {
+            if (params.onCreateRage) {
+                console.log('Criando Range')
+                let target = e.target
+                let selection;
+                if (! target.dataset.dateItem) {
+                    target = target.parentElement
+                }
+
+                selection = Array.from(target.parentElement.querySelectorAll('.timeline-drag-selection'))
+                const elStart = selection.slice().shift()
+                const elEnd = selection.slice().pop()
+
+                if (elStart && elEnd) {
+                    let start = new Date()
+                    let end = new Date()
+                    start.setTime(elStart.dataset.dateItem)
+                    end.setTime(elEnd.dataset.dateItem)
+                    
+                    params.onCreateRage(start, end, elStart.dataset.subjectItem)
+                }
+            }                  
+        }
+        let parent = document.querySelector('td').parentElement.parentElement
+        parent.addEventListener('mouseup',(e)=> parentMouseUP(e))
+        console.log(parent);
+
+    }    
     params.data.booking.forEach((booking) => {
         let date = new Date(booking.start),
             outDate = new Date(booking.end),
@@ -210,9 +240,8 @@ export default function (params) {
             dayDiff = parseInt(timeDiff / day),
             startSelector = `[data-subject-item="${booking.subject}"][data-date-item="${date.getTime()}"]`,
             endSelector = `[data-subject-item="${booking.subject}"][data-date-item="${outDate.getTime()}"]`,
-            tdStart = params.el.querySelector(startSelector),
-            tdEnd = params.el.querySelector(endSelector);
-        
+            tdStart = document.querySelector(startSelector),
+            tdEnd = document.querySelector(endSelector);
         booking.daysDiff = dayDiff
         tdStart.colSpan = dayDiff+1
         tdStart.style.backgroundColor = '#DDD'

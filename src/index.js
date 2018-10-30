@@ -6,11 +6,11 @@ import booking from './booking'
 window.$timelineTableConfig = window.$timelineTableConfig || defaults
 
 window.createBookingMap = function(params) {
-
     let errors = validate(params.data)
 
     if (errors.length) {
-        return errors.forEach((e) => console.error(e))
+         errors.forEach((e) => console.error(e))
+    
     }
 
     createTable(params)

@@ -5,6 +5,8 @@ export function getEarlyDate(data) {
 
     data.booking.forEach((b) => {
         let date = new Date(b.start)
+        date = new Date(date.getTime())
+        console.log(date);
         if ((! selected) || 
             date.getTime() < selected.getTime()) {
           selected = date

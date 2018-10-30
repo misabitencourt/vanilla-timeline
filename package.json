@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --config mywebpack.config.js --watch",
     "transpile": "babel dist/bundle.js --out-file dist/bundle.js",
-    "minify": "uglifyjs ./dist/bundle.js --compress --output ./dist/bundle.js",
+    "minify": "uglifyjs ./dist/bundle.js --compress --output ./dist/vanilla-timeline.min.js",
     "build": "webpack --config mywebpack.config.js && npm run transpile && npm run minify"
   },
   "repository": {
